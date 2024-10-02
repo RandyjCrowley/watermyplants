@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import { Alert } from "flowbite-svelte";
+  import PlantInput from "$lib/components/plant_input.svelte";
+</script>
+
+<main class="bg-sky-50 p-6 min-h-screen">
+  <PlantInput />
+</main>
