@@ -1,18 +1,10 @@
 <script lang="ts">
-  import {
-    Input,
-    Label,
-    Helper,
-    Button,
-    Checkbox,
-    A,
-    Textarea,
-    Select,
-  } from "flowbite-svelte";
-  import type { ActionData } from "./$types";
+  import { Input, Label, Button, Textarea, Select } from "flowbite-svelte";
+  import type { ActionData, PageServerLoad } from "./$types";
+  export let data: PageServerLoad;
+  export let form: ActionData;
 
-  export let form: ActionData
-  console.log(form)
+  console.log(data);
   let selectedSunlight = "";
   let sunlightTypes = [
     { value: 0, name: "Full Sun" },
@@ -37,10 +29,6 @@
   ];
 </script>
 
-<pre>
-  {JSON.stringify(form,null,2)}
-</pre>
-
 <form method="post" action="?/create">
   <div class="grid gap-6 mb-6 md:grid-cols-2">
     <div>
@@ -56,13 +44,14 @@
     <div>
       <Label for="website" class="mb-2">Plant Wiki URL</Label>
       <Input
-        type="url"
+        type="text"
         id="website"
+        name="website"
         placeholder="https://watermyplants.com/wiki"
         required
       />
     </div>
-    <div>
+    <div class="col-span-2">
       <Label for="plant_desc" class="mb-2">Plant Description</Label>
       <Textarea
         id="plant_desc"
@@ -77,6 +66,7 @@
       <Label for="sunlight_type" class="mb-2">Sun Light Type</Label>
       <Select
         id="sunlight_type"
+        name="sunlight_type"
         required
         items={sunlightTypes}
         bind:value={selectedSunlight}
@@ -86,11 +76,14 @@
       <Label for="water_type" class="mb-2">Watering Frequency</Label>
       <Select
         id="water_type"
+        name="water_type"
         required
         items={wateringTypes}
         bind:value={selectedWaterTypes}
       />
     </div>
   </div>
-  <Button type="submit">Submit</Button>
+  <div class="w-full flex justify-center mt-10">
+    <Button type="submit" class="md:w-2/12 w-full">Submit</Button>
+  </div>
 </form>

@@ -2,4 +2,6 @@
   import "../app.css";
 </script>
 
-<slot />
+<main class="bg-sky-50 p-6 min-h-screen">
+  <slot />
+</main>
